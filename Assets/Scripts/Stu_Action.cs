@@ -12,8 +12,8 @@ public class Stu_Action : MonoBehaviour
     private float CrouchPower = 1.5f;
     private float RunningMovePower = 5f;
     private int direction = 1;
+    private bool Running = false;
     private bool Crouching = false;
-    private bool Readying = false;
 
     void Awake()
     {
@@ -24,21 +24,19 @@ public class Stu_Action : MonoBehaviour
     void Update()
     {
         Walk();
-        Ready();
+        Run();
         Crouch();
     }
 
-    void Ready()
+    void Run()
     {
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            Readying = true;
-            anim.SetBool("isReady", true);
+            Running = true;
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            Readying = false;
-            anim.SetBool("isReady", false);
+            Running = false;
         }
 
     }
@@ -59,7 +57,7 @@ public class Stu_Action : MonoBehaviour
 
     void Walk()
     {
-        if (!Readying && !Crouching)
+        if (!Running && !Crouching)
         {
             Vector3 moveVelocity = Vector3.zero;
             anim.SetBool("isWalking", false);
@@ -111,7 +109,7 @@ public class Stu_Action : MonoBehaviour
             transform.position += moveVelocity * CrouchPower * Time.deltaTime;
         }
 
-        if (Readying && !Crouching)
+        if (Running && !Crouching)
         {
             Vector3 moveVelocity = Vector3.zero;
             anim.SetBool("isRunning", false);
