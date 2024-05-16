@@ -12,8 +12,8 @@ public class Stu_Action : MonoBehaviour
     private float CrouchPower = 1.5f;
     private float RunningMovePower = 5f;
     private int direction = 1;
-    private bool Running = false;
     private bool Crouching = false;
+    private bool Readying = false;
 
     void Awake()
     {
@@ -24,19 +24,21 @@ public class Stu_Action : MonoBehaviour
     void Update()
     {
         Walk();
-        Run();
+        Ready();
         Crouch();
     }
 
-    void Run()
+    void Ready()
     {
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            Running = true;
+            Readying = true;
+            anim.SetBool("isReady", true);
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            Running = false;
+            Readying = false;
+            anim.SetBool("isReady", false);
         }
 
     }
@@ -57,7 +59,7 @@ public class Stu_Action : MonoBehaviour
 
     void Walk()
     {
-        if (!Running && !Crouching)
+        if (!Readying && !Crouching)
         {
             Vector3 moveVelocity = Vector3.zero;
             anim.SetBool("isWalking", false);
@@ -67,7 +69,7 @@ public class Stu_Action : MonoBehaviour
                 direction = -1;
                 moveVelocity = Vector3.left;
 
-                transform.localScale = new Vector3(direction, 1, 1);
+                transform.localScale = new Vector3(direction, 1, 1) * 3;
                 anim.SetBool("isWalking", true);
 
             }
@@ -76,7 +78,7 @@ public class Stu_Action : MonoBehaviour
                 direction = 1;
                 moveVelocity = Vector3.right;
 
-                transform.localScale = new Vector3(direction, 1, 1);
+                transform.localScale = new Vector3(direction, 1, 1) * 3;
                 anim.SetBool("isWalking", true);
 
             }
@@ -93,7 +95,7 @@ public class Stu_Action : MonoBehaviour
                 direction = -1;
                 moveVelocity = Vector3.left;
 
-                transform.localScale = new Vector3(direction, 1, 1);
+                transform.localScale = new Vector3(direction, 1, 1) * 3;
                 anim.SetBool("isCrawling", true);
 
             }
@@ -102,14 +104,14 @@ public class Stu_Action : MonoBehaviour
                 direction = 1;
                 moveVelocity = Vector3.right;
 
-                transform.localScale = new Vector3(direction, 1, 1);
+                transform.localScale = new Vector3(direction, 1, 1) * 3;
                 anim.SetBool("isCrawling", true);
 
             }
             transform.position += moveVelocity * CrouchPower * Time.deltaTime;
         }
 
-        if (Running && !Crouching)
+        if (Readying && !Crouching)
         {
             Vector3 moveVelocity = Vector3.zero;
             anim.SetBool("isRunning", false);
@@ -118,7 +120,7 @@ public class Stu_Action : MonoBehaviour
                 direction = -1;
                 moveVelocity = Vector3.left;
 
-                transform.localScale = new Vector3(direction, 1, 1);
+                transform.localScale = new Vector3(direction, 1, 1) * 3;
                 anim.SetBool("isRunning", true);
             }
             if (Input.GetAxisRaw("Horizontal") > 0)
@@ -126,7 +128,7 @@ public class Stu_Action : MonoBehaviour
                 direction = 1;
                 moveVelocity = Vector3.right;
 
-                transform.localScale = new Vector3(direction, 1, 1);
+                transform.localScale = new Vector3(direction, 1, 1) * 3;
                 anim.SetBool("isRunning", true);
             }
             transform.position += moveVelocity * RunningMovePower * Time.deltaTime;
