@@ -688,6 +688,7 @@ GameObject:
   - component: {fileID: 1530570403}
   - component: {fileID: 1530570402}
   - component: {fileID: 1530570401}
+  - component: {fileID: 1530570406}
   m_Layer: 0
   m_Name: Monster
   m_TagString: Untagged
@@ -731,7 +732,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -750,7 +751,7 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1530570400}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -845,6 +846,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1530570406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1530570400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a8f96835c1025e4c9be05c400d5a11d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextMove: 0
 --- !u!1 &2050113715
 GameObject:
   m_ObjectHideFlags: 0
