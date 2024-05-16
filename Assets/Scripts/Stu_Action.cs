@@ -8,12 +8,13 @@ public class Stu_Action : MonoBehaviour
     Rigidbody2D rb;
 
     Vector3 movement;
-    private float movePower = 3f;
-    private float CrouchPower = 1.5f;
-    private float RunningMovePower = 5f;
+    private float movePower = 9f;
+    private float CrouchPower = 4.5f;
+    private float RunningMovePower = 15f;
     private int direction = 1;
     private bool Crouching = false;
     private bool Readying = false;
+    private float playersize = 2;
 
     void Awake()
     {
@@ -69,7 +70,7 @@ public class Stu_Action : MonoBehaviour
                 direction = -1;
                 moveVelocity = Vector3.left;
 
-                transform.localScale = new Vector3(direction, 1, 1) * 3;
+                transform.localScale = new Vector3(direction, 1, 1) * playersize;
                 anim.SetBool("isWalking", true);
 
             }
@@ -78,7 +79,7 @@ public class Stu_Action : MonoBehaviour
                 direction = 1;
                 moveVelocity = Vector3.right;
 
-                transform.localScale = new Vector3(direction, 1, 1) * 3;
+                transform.localScale = new Vector3(direction, 1, 1) * playersize;
                 anim.SetBool("isWalking", true);
 
             }
@@ -95,7 +96,7 @@ public class Stu_Action : MonoBehaviour
                 direction = -1;
                 moveVelocity = Vector3.left;
 
-                transform.localScale = new Vector3(direction, 1, 1) * 3;
+                transform.localScale = new Vector3(direction, 1, 1) * playersize;
                 anim.SetBool("isCrawling", true);
 
             }
@@ -104,7 +105,7 @@ public class Stu_Action : MonoBehaviour
                 direction = 1;
                 moveVelocity = Vector3.right;
 
-                transform.localScale = new Vector3(direction, 1, 1) * 3;
+                transform.localScale = new Vector3(direction, 1, 1) * playersize;
                 anim.SetBool("isCrawling", true);
 
             }
@@ -120,7 +121,7 @@ public class Stu_Action : MonoBehaviour
                 direction = -1;
                 moveVelocity = Vector3.left;
 
-                transform.localScale = new Vector3(direction, 1, 1) * 3;
+                transform.localScale = new Vector3(direction, 1, 1) * playersize;
                 anim.SetBool("isRunning", true);
             }
             if (Input.GetAxisRaw("Horizontal") > 0)
@@ -128,7 +129,7 @@ public class Stu_Action : MonoBehaviour
                 direction = 1;
                 moveVelocity = Vector3.right;
 
-                transform.localScale = new Vector3(direction, 1, 1) * 3;
+                transform.localScale = new Vector3(direction, 1, 1) * playersize;
                 anim.SetBool("isRunning", true);
             }
             transform.position += moveVelocity * RunningMovePower * Time.deltaTime;
