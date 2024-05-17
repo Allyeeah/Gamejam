@@ -8,7 +8,8 @@ public class Stu_Action : MonoBehaviour
     Rigidbody2D rb;
 
     Vector3 movement;
-    private float movePower = 3f;
+
+    public float movePower = 3f;
     private float CrouchPower = 1.5f;
     private float RunningMovePower = 5f;
     private int direction = 1;
@@ -31,12 +32,12 @@ public class Stu_Action : MonoBehaviour
     void Ready()
     {
         if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
+        {// LeftShift키가 눌릴때
             Readying = true;
             anim.SetBool("isReady", true);
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
+        {// LeftShift키 
             Readying = false;
             anim.SetBool("isReady", false);
         }
@@ -69,7 +70,7 @@ public class Stu_Action : MonoBehaviour
                 direction = -1;
                 moveVelocity = Vector3.left;
 
-                transform.localScale = new Vector3(direction, 1, 1) * 3;
+                transform.localScale = new Vector3(direction, 1, 1);
                 anim.SetBool("isWalking", true);
 
             }
@@ -78,7 +79,7 @@ public class Stu_Action : MonoBehaviour
                 direction = 1;
                 moveVelocity = Vector3.right;
 
-                transform.localScale = new Vector3(direction, 1, 1) * 3;
+                transform.localScale = new Vector3(direction, 1, 1);
                 anim.SetBool("isWalking", true);
 
             }

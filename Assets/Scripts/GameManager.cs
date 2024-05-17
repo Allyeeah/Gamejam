@@ -1,50 +1,58 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public GameObject ClearPanel;
-    public GameObject KeyButton;
-    public bool gotKey = false;
+   // public GameObject keybutton;
+   // public bool gotkey = false;
 
-    private bool isNearKeyButton = false;
+    //private bool isnearkeybutton = false;
 
+    
     void Update()
     {
-        if (isNearKeyButton && Input.GetKeyDown(KeyCode.E))
+        //if (isnearkeybutton && Input.GetKeyDown(Keycode.E))
+        //{
+        //    getkey();
+        //}
+        print("check");
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            GetKey();
-        }
-    }
-
-    public void OpenDoor()
-    {
-        if (gotKey == true)
-        {
+            print("check");
             ClearPanel.SetActive(true);
         }
     }
 
-    public void GetKey()
-    {
-        gotKey = true;
-        Destroy(KeyButton);
-    }
+    //public void opendoor()
+    //{
+    //    if (gotkey == true)
+    //    {
+    //        ClearPanel.setactive(true);
+    //    }
+    //}
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject == KeyButton)
-        {
-            isNearKeyButton = true;
-        }
-    }
+    //public void getkey()
+    //{
+    //    gotkey = true;
+    //    destroy(keybutton);
+    //}
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject == KeyButton)
-        {
-            isNearKeyButton = false;
-        }
-    }
+    //private void OnTriggerEnter2D(Collider2D other)
+    //{
+    //    if (other.gameobject == keybutton)
+    //    {
+    //        isnearkeybutton = true;
+    //    }
+    //}
+
+    //private void OnTriggerExit2D(Collider2D other)
+    //{
+    //    if (other.gameobject == keybutton)
+    //    {
+    //        isnearkeybutton = false;
+    //    }
+    //}
 }
