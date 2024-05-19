@@ -34,7 +34,6 @@ public class Bugi_Cam : MonoBehaviour
         {
             scriptToPause2.enabled = false;
         }
-
         if (scriptToPause3 != null)
         {
             scriptToPause3.enabled = false;
