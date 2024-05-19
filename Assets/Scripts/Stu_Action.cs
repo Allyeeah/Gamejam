@@ -70,7 +70,7 @@ public class Stu_Action : MonoBehaviour
                 direction = -1;
                 moveVelocity = Vector3.left;
 
-                transform.localScale = new Vector3(direction, 1, 1);
+                transform.localScale = new Vector3(direction, 1, 1) * 2;
                 anim.SetBool("isWalking", true);
 
             }
@@ -79,7 +79,7 @@ public class Stu_Action : MonoBehaviour
                 direction = 1;
                 moveVelocity = Vector3.right;
 
-                transform.localScale = new Vector3(direction, 1, 1);
+                transform.localScale = new Vector3(direction, 1, 1) * 2;
                 anim.SetBool("isWalking", true);
 
             }
@@ -96,7 +96,7 @@ public class Stu_Action : MonoBehaviour
                 direction = -1;
                 moveVelocity = Vector3.left;
 
-                transform.localScale = new Vector3(direction, 1, 1) * 3;
+                transform.localScale = new Vector3(direction, 1, 1) * 2;
                 anim.SetBool("isCrawling", true);
 
             }
@@ -105,7 +105,7 @@ public class Stu_Action : MonoBehaviour
                 direction = 1;
                 moveVelocity = Vector3.right;
 
-                transform.localScale = new Vector3(direction, 1, 1) * 3;
+                transform.localScale = new Vector3(direction, 1, 1) * 2;
                 anim.SetBool("isCrawling", true);
 
             }
@@ -121,7 +121,7 @@ public class Stu_Action : MonoBehaviour
                 direction = -1;
                 moveVelocity = Vector3.left;
 
-                transform.localScale = new Vector3(direction, 1, 1) * 3;
+                transform.localScale = new Vector3(direction, 1, 1) * 2;
                 anim.SetBool("isRunning", true);
             }
             if (Input.GetAxisRaw("Horizontal") > 0)
@@ -129,7 +129,7 @@ public class Stu_Action : MonoBehaviour
                 direction = 1;
                 moveVelocity = Vector3.right;
 
-                transform.localScale = new Vector3(direction, 1, 1) * 3;
+                transform.localScale = new Vector3(direction, 1, 1) * 2;
                 anim.SetBool("isRunning", true);
             }
             transform.position += moveVelocity * RunningMovePower * Time.deltaTime;
