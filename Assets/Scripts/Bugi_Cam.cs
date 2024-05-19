@@ -5,8 +5,10 @@ using UnityEngine;
 public class Bugi_Cam : MonoBehaviour
 {
     public Transform startLocation; // 카메라가 잠깐 위치할 시작 위치
-    public float waitTime = 2f; // 카메라가 시작 위치에 머무는 시간
-    public MonoBehaviour scriptToPause; // 일시 중지할 스크립트
+    public float waitTime = 8f; // 카메라가 시작 위치에 머무는 시간
+    public MonoBehaviour scriptToPause1; // 일시 중지할 스크립트
+    public MonoBehaviour scriptToPause2;
+    public MonoBehaviour scriptToPause3;
 
     private Vector3 originalPosition;
     private Quaternion originalRotation;
@@ -24,9 +26,18 @@ public class Bugi_Cam : MonoBehaviour
     private IEnumerator MoveCamera()
     {
         // 일시 중지할 스크립트의 실행을 중단합니다.
-        if (scriptToPause != null)
+        if (scriptToPause1 != null)
         {
-            scriptToPause.enabled = false;
+            scriptToPause1.enabled = false;
+        }
+        if (scriptToPause2 != null)
+        {
+            scriptToPause2.enabled = false;
+        }
+
+        if (scriptToPause3 != null)
+        {
+            scriptToPause3.enabled = false;
         }
 
         // 카메라를 시작 위치로 이동시킵니다.
@@ -41,9 +52,17 @@ public class Bugi_Cam : MonoBehaviour
         transform.rotation = originalRotation;
 
         // 일시 중지한 스크립트의 실행을 재개합니다.
-        if (scriptToPause != null)
+        if (scriptToPause1 != null)
         {
-            scriptToPause.enabled = true;
+            scriptToPause1.enabled = true;
+        }
+        if (scriptToPause2 != null)
+        {
+            scriptToPause2.enabled = true;
+        }
+        if (scriptToPause3 != null)
+        {
+            scriptToPause2.enabled = true;
         }
     }
 }

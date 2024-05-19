@@ -6,8 +6,6 @@ public class Camera2 : MonoBehaviour
 {
     [SerializeField]
     Transform playerTransform;
-    [SerializeField]
-    Vector3 cameraPosition;
 
     [SerializeField]
     Vector2 center;
@@ -15,11 +13,11 @@ public class Camera2 : MonoBehaviour
     Vector2 mapSize;
 
     [SerializeField]
-    float cameraMoveSpeed;
     float height;
     float width;
 
     public float cameraSpeed = 5.0f;
+    private int currentDirection = 1;
 
     public GameObject player;
 
@@ -30,8 +28,17 @@ public class Camera2 : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            currentDirection = -1;
+        }
+        else if (Input.GetKeyDown(KeyCode.D))
+        {
+            currentDirection = 1;
+        }
+
         Vector3 dir = player.transform.position - this.transform.position;
-        Vector3 moveVector = new Vector3(dir.x * cameraSpeed * Time.deltaTime, 
+        Vector3 moveVector = new Vector3((dir.x + 2.3f * currentDirection) * cameraSpeed * Time.deltaTime, 
                                      (dir.y + 4.3f) * cameraSpeed * Time.deltaTime, 0.0f);
         this.transform.Translate(moveVector);
 
@@ -48,7 +55,7 @@ public class Camera2 : MonoBehaviour
 
         transform.position = new Vector3(clampX, clampY, -10f);
     }
-
+    
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

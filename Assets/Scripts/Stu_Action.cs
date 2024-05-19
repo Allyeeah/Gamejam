@@ -8,9 +8,9 @@ public class Stu_Action : MonoBehaviour
     Rigidbody2D rb;
 
     Vector3 movement;
-    private float movePower = 9f;
-    private float CrouchPower = 4.5f;
-    private float RunningMovePower = 15f;
+    private float movePower = 4.5f;
+    private float CrouchPower = 2.25f;
+    private float RunningMovePower = 7.5f;
     private int direction = 1;
     private bool Crouching = false;
     private bool Readying = false;
