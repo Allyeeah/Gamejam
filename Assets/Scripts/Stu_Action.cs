@@ -70,7 +70,7 @@ public class Stu_Action : MonoBehaviour
                 direction = -1;
                 moveVelocity = Vector3.left;
 
-                transform.localScale = new Vector3(direction, 1, 1) * 2;
+                transform.localScale = new Vector3(direction, 1, 1);
                 anim.SetBool("isWalking", true);
 
             }
@@ -79,7 +79,7 @@ public class Stu_Action : MonoBehaviour
                 direction = 1;
                 moveVelocity = Vector3.right;
 
-                transform.localScale = new Vector3(direction, 1, 1) * 2;
+                transform.localScale = new Vector3(direction, 1, 1);
                 anim.SetBool("isWalking", true);
 
             }

@@ -427,11 +427,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f93fc42a375841f489ca9fbd63f688d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 1252993290}
-  cameraPosition: {x: 0, y: 0, z: -10}
-  center: {x: 0, y: 0}
-  mapSize: {x: 15, y: 15}
-  cameraMoveSpeed: 2
 --- !u!1 &866513970
 GameObject:
   m_ObjectHideFlags: 0
@@ -1326,11 +1321,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!4 &1252993290 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -2888759972122988496, guid: eecc9aaeb15d7974fb9a674f72975b53, type: 3}
-  m_PrefabInstance: {fileID: 203833582}
-  m_PrefabAsset: {fileID: 0}
 --- !u!70 &1252993291
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1378,7 +1368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fd2747f49b8ab6419bf4b26138635b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movePower: 10
+  movePower: 6
 --- !u!114 &1252993294
 MonoBehaviour:
   m_ObjectHideFlags: 0
