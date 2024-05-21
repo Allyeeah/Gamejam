@@ -61,7 +61,7 @@ public class Bugi_Cam : MonoBehaviour
         }
         if (scriptToPause3 != null)
         {
-            scriptToPause2.enabled = true;
+            scriptToPause3.enabled = true;
         }
     }
 }
