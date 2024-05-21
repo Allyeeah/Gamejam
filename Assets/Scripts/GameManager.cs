@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
@@ -7,19 +8,21 @@ public class GameManager : MonoBehaviour
 {
     public GameObject ClearPanel;
     public GameObject StartPanel;
-   // public GameObject keybutton;
-   // public bool gotkey = false;
+
+
+    // public GameObject keybutton;
+    // public bool gotkey = false;
 
     //private bool isnearkeybutton = false;
 
-    
+
     void Update()
     {
         //if (isnearkeybutton && Input.GetKeyDown(Keycode.E))
         //{
         //    getkey();
         //}
-        
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
             print("check");
@@ -28,7 +31,6 @@ public class GameManager : MonoBehaviour
 
     }
 
- 
         //public void opendoor()
         //{
         //    if (gotkey == true)
