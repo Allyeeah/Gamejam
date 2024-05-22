@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Stu_Action : MonoBehaviour
@@ -9,9 +10,9 @@ public class Stu_Action : MonoBehaviour
 
     Vector3 movement;
 
-    public float movePower = 3f;
-    private float CrouchPower = 1.5f;
-    private float RunningMovePower = 5f;
+    public float movePower = 5f;
+    private float CrouchPower = 3f;
+    private float RunningMovePower = 10f;
     private int direction = 1;
     private bool Crouching = false;
     private bool Readying = false;
@@ -136,5 +137,6 @@ public class Stu_Action : MonoBehaviour
         }
 
     }
+
 
 }

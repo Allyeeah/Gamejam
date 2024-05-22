@@ -14,7 +14,7 @@ public class Start_Scene: MonoBehaviour
     private bool isMoving = true;
     private Transform currentTargetPosition;
     private bool reachedFirstTarget = false;
-
+    public MonoBehaviour scriptToPause1;
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -24,6 +24,7 @@ public class Start_Scene: MonoBehaviour
     {
         currentTargetPosition = firstTargetPosition;
         StartCoroutine(MoveToTarget());
+        scriptToPause1.enabled = true;
     }
 
     private IEnumerator MoveToTarget()
@@ -33,19 +34,20 @@ public class Start_Scene: MonoBehaviour
             float distance = Vector3.Distance(transform.position, currentTargetPosition.position);
             animator.SetBool("isWalking", true);
 
-            if (distance < 0.1f)
+            if (distance==0)
             {
                 if (!reachedFirstTarget)
                 {
                     reachedFirstTarget = true;
                     currentTargetPosition = secondTargetPosition;
-                    animator.SetBool("isLooking", true);
                     animator.SetBool("isWalking", false);
+                    animator.SetBool("isLooking", true);
                 }
                 else
                 {
                     isMoving = false;
                     animator.SetBool("isLooking", false);
+                    scriptToPause1.enabled = false;
                 }
             }
             else
