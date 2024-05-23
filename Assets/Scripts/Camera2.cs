@@ -39,7 +39,7 @@ public class Camera2 : MonoBehaviour
 
         Vector3 dir = player.transform.position - this.transform.position;
         Vector3 moveVector = new Vector3((dir.x + 2.3f * currentDirection) * cameraSpeed * Time.deltaTime, 
-                                     (dir.y + 4.3f) * cameraSpeed * Time.deltaTime, 0.0f);
+                                     (dir.y + 9.8f) * cameraSpeed * Time.deltaTime, 0.0f);
         this.transform.Translate(moveVector);
 
         LimitCameraArea();
