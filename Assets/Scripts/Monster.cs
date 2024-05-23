@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
 public class Monster : MonoBehaviour
@@ -13,12 +14,23 @@ public class Monster : MonoBehaviour
     int movementFlag = 0;
     bool isTracing = false;
     public GameObject traceTarget;
-    public string playerAnimationState = "Stu_Run";
+    public GameObject Camera;
+    public string playerAnimationState = "Run_Player";
+    public bool stopmove = false;
 
+    public bool done = false;
+    public Transform firstLocation;
+    public Transform secondLocation;
+    public Transform lastLocation;
+    public float waitTime = 0.2f; // 카메라가 시작 위치에 머무는 시간
+    public MonoBehaviour scriptToPause1; // 일시 중지할 스크립트
+    public MonoBehaviour scriptToPause2;
+    public MonoBehaviour scriptToPause3;
     private void Start()
     {
         animator = gameObject.GetComponent<Animator>();
         StartCoroutine("ChangeMovement");
+        transform.position = Vector2.MoveTowards(new Vector2(144.52f, -6.95f), new Vector2(90, -6.95f), 99999f);
     }
 
     IEnumerator ChangeMovement() 
@@ -35,49 +47,62 @@ public class Monster : MonoBehaviour
             animator.SetBool("isLooking", true);
         }
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(4f);
 
         StartCoroutine("ChangeMovement");
     }
 
     private void FixedUpdate()
     {
-        Move();
         CheckBackwardRay();
+        Move();
     }
     void Move()
     {
         Vector3 moveVelocity = Vector3.zero;
 
-        if (isTracing)
+        if(stopmove == false)
         {
-            Vector3 playerPos = traceTarget.transform.position;
-
-            if (playerPos.x > transform.position.x)
+            if (isTracing)
             {
-                moveVelocity = Vector3.right;
-                transform.localScale = new Vector3(-1, 1, 1) * 0.5f;
+                Vector3 playerPos = traceTarget.transform.position;
+
+                if (playerPos.x > transform.position.x)
+                {
+                    moveVelocity = Vector3.right;
+                    transform.localScale = new Vector3(-1, 1, 1) * 0.5f;
+
+                }
+                else if (playerPos.x < transform.position.x)
+                {
+                    moveVelocity = Vector3.left;
+                    transform.localScale = new Vector3(1, 1, 1) * 0.5f;
+
+                }
+
+                if (playerPos.x - transform.position.x < 15 && playerPos.x - transform.position.x > -15 && !done)
+                {
+                    done= true;
+                    StartCoroutine(MoveCamera());
+
+                }
 
             }
-            else if (playerPos.x < transform.position.x)
+
+            else if (movementFlag == 1)
             {
                 moveVelocity = Vector3.left;
                 transform.localScale = new Vector3(1, 1, 1) * 0.5f;
-
             }
-        }
-        else if (movementFlag == 1)
-        {
-            moveVelocity = Vector3.left;
-            transform.localScale = new Vector3(1, 1, 1) * 0.5f;
-        }
-        else if (movementFlag==2)
-        {
-            moveVelocity = Vector3.right;
-            transform.localScale = new Vector3(-1, 1, 1) * 0.5f;
-        }
 
-        transform.position += moveVelocity * movePower * Time.deltaTime;
+            else if (movementFlag == 2)
+            {
+                moveVelocity = Vector3.right;
+                transform.localScale = new Vector3(-1, 1, 1) * 0.5f;
+            }
+
+            transform.position += moveVelocity * movePower * Time.deltaTime;
+        }
 
     }
     void CheckBackwardRay()
@@ -105,24 +130,42 @@ public class Monster : MonoBehaviour
                     Vector3 moveVelocity = Vector3.zero;
                     Vector3 playerPos = traceTarget.transform.position;
 
-                    if (playerPos.x > transform.position.x)
+                    if (playerPos.x > transform.position.x )
                     {
                         StopCoroutine("ChangeMovement");
-                        transform.localScale = new Vector3(-1, 1, 1) * 0.5f;
-                        StartCoroutine("StartChase");
+                        animator.SetBool("isLooking", false);
+
+                        StartCoroutine(PauseBeforeChase(new Vector3(-1, 1, 1) * 0.5f));
 
                     }
                     else if (playerPos.x < transform.position.x)
                     {
                         StopCoroutine("ChangeMovement");
-                        transform.localScale = new Vector3(1, 1, 1) * 0.5f;
-                        StartCoroutine("StartChase");
+                        animator.SetBool("isLooking", false);
+
+                        StartCoroutine(PauseBeforeChase(new Vector3(1, 1, 1) * 0.5f));
 
                     }
 
                 }
             }
         }
+    }
+    IEnumerator PauseBeforeChase(Vector3 newScale)
+    {
+        if(!isTracing)
+        {
+            stopmove = true;
+            yield return new WaitForSeconds(2.0f); // Adjust the wait time as needed
+
+            transform.localScale = newScale;
+
+            yield return new WaitForSeconds(2.0f);
+
+            stopmove = false;
+            animator.SetBool("isLooking", true);
+        }
+
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -143,8 +186,7 @@ public class Monster : MonoBehaviour
 
             StopCoroutine("ChangeMovement");
         }
-/*
-        Physics2D.IgnoreCollision(other.collider, GetComponent<Collider2D>());*/
+
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -156,15 +198,63 @@ public class Monster : MonoBehaviour
     }
     IEnumerator StartChase()
     {
-        isTracing = true;
         movePower = 0f;
         animator.SetTrigger("Discover");
 
         yield return new WaitForSeconds(3.0f);
 
-        movePower = 12f;
+        isTracing = true;
+        movePower = 30f;
         animator.SetBool("isDiscover", true);
 
     }
+    private IEnumerator MoveCamera()
+    {
+        // 일시 중지할 스크립트의 실행을 중단합니다.
+        if (scriptToPause1 != null)
+        {
+            scriptToPause1.enabled = false;
+        }
+        if (scriptToPause2 != null)
+        {
+            scriptToPause2.enabled = false;
+        }
+        if (scriptToPause3 != null)
+        {
+            scriptToPause3.enabled = false;
+        }
 
+        // 카메라를 시작 위치로 이동시킵니다.
+        Camera.transform.position = firstLocation.position;
+        Camera.transform.rotation = firstLocation.rotation;
+
+        // waitTime 동안 대기합니다.
+        yield return new WaitForSeconds(waitTime);
+
+        // 카메라를 원래 위치로 되돌립니다.
+        Camera.transform.position = secondLocation.position;
+        Camera.transform.rotation = secondLocation.rotation;
+
+        yield return new WaitForSeconds(waitTime);
+
+        // 카메라를 원래 위치로 되돌립니다.
+        Camera.transform.position = lastLocation.position;
+        Camera.transform.rotation = lastLocation.rotation;
+
+        yield return new WaitForSeconds(5f);
+
+        // 일시 중지한 스크립트의 실행을 재개합니다.
+        if (scriptToPause1 != null)
+        {
+            scriptToPause1.enabled = true;
+        }
+        if (scriptToPause2 != null)
+        {
+            scriptToPause2.enabled = true;
+        }
+        if (scriptToPause3 != null)
+        {
+            scriptToPause3.enabled = true;
+        }
+    }
 }
