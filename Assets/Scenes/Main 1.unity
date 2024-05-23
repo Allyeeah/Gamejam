@@ -6469,6 +6469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movePower: 6
+  scale: 0.245
 --- !u!114 &1252993294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6851,7 +6852,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2004436837
 MonoBehaviour:
   m_ObjectHideFlags: 0
