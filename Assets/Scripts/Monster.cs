@@ -17,6 +17,8 @@ public class Monster : MonoBehaviour
     public GameObject Camera;
     public string playerAnimationState = "Run_Player";
     public bool stopmove = false;
+    public bool back = false;
+    public bool tmp = false;
 
     public bool done = false;
     public Transform firstLocation;
@@ -26,13 +28,28 @@ public class Monster : MonoBehaviour
     public MonoBehaviour scriptToPause1; // 일시 중지할 스크립트
     public MonoBehaviour scriptToPause2;
     public MonoBehaviour scriptToPause3;
+
+    public AudioClip normalMusic; // 일반 배경음악
+    public AudioClip monsterMusic; // 몬스터와 충돌 시 재생할 음악
+    private AudioSource audioSource;
+
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = normalMusic;
+        audioSource.Play();
         animator = gameObject.GetComponent<Animator>();
         StartCoroutine("ChangeMovement");
         transform.position = Vector2.MoveTowards(new Vector2(144.52f, -6.95f), new Vector2(90, -6.95f), 99999f);
     }
-
+    void ChangeMusic(AudioClip newClip)
+    {
+        if (audioSource.clip != newClip)
+        {
+            audioSource.clip = newClip;
+            audioSource.Play();
+        }
+    }
     IEnumerator ChangeMovement() 
     {
 
@@ -67,22 +84,23 @@ public class Monster : MonoBehaviour
             {
                 Vector3 playerPos = traceTarget.transform.position;
 
-                if (playerPos.x > transform.position.x)
+                if (playerPos.x > transform.position.x && traceTarget.transform.localScale == new Vector3(-1,1,1) * 0.245f)
                 {
                     moveVelocity = Vector3.right;
                     transform.localScale = new Vector3(-1, 1, 1) * 0.5f;
 
                 }
-                else if (playerPos.x < transform.position.x)
+                else if (playerPos.x < transform.position.x && traceTarget.transform.localScale == new Vector3(1, 1, 1) * 0.245f)
                 {
                     moveVelocity = Vector3.left;
                     transform.localScale = new Vector3(1, 1, 1) * 0.5f;
 
                 }
-
-                if (playerPos.x - transform.position.x < 15 && playerPos.x - transform.position.x > -15 && !done)
+                    
+                if (playerPos.x - transform.position.x < 15 && playerPos.x - transform.position.x > -15 && !done && tmp)
                 {
-                    done= true;
+                    ChangeMusic(monsterMusic);
+                    done = true;
                     StartCoroutine(MoveCamera());
 
                 }
@@ -118,38 +136,43 @@ public class Monster : MonoBehaviour
 
         Debug.DrawRay(rayStartPoint, rayDirection * rayDistance, Color.red);
 
-        if (hit.collider != null && hit.collider.CompareTag("Player"))
+        if(!back)
         {
-            Animator playerAnimator = hit.collider.GetComponent<Animator>();
-            if (playerAnimator != null)
+            if (hit.collider != null && hit.collider.CompareTag("Player"))
             {
-                // 플레이어의 현재 애니메이션 상태를 확인합니다.
-                AnimatorStateInfo stateInfo = playerAnimator.GetCurrentAnimatorStateInfo(0);
-                if (stateInfo.IsName(playerAnimationState))
+                Animator playerAnimator = hit.collider.GetComponent<Animator>();
+                if (playerAnimator != null)
                 {
-                    Vector3 moveVelocity = Vector3.zero;
-                    Vector3 playerPos = traceTarget.transform.position;
-
-                    if (playerPos.x > transform.position.x )
+                    // 플레이어의 현재 애니메이션 상태를 확인합니다.
+                    AnimatorStateInfo stateInfo = playerAnimator.GetCurrentAnimatorStateInfo(0);
+                    if (stateInfo.IsName(playerAnimationState))
                     {
-                        StopCoroutine("ChangeMovement");
-                        animator.SetBool("isLooking", false);
+                        back = true;
+                        Vector3 moveVelocity = Vector3.zero;
+                        Vector3 playerPos = traceTarget.transform.position;
 
-                        StartCoroutine(PauseBeforeChase(new Vector3(-1, 1, 1) * 0.5f));
+                        if (playerPos.x > transform.position.x)
+                        {
+                            StopCoroutine("ChangeMovement");
+                            animator.SetBool("isLooking", false);
+                            movementFlag = 2;
+                            StartCoroutine(PauseBeforeChase(new Vector3(-1, 1, 1) * 0.5f));
+
+                        }
+                        else if (playerPos.x < transform.position.x)
+                        {
+                            StopCoroutine("ChangeMovement");
+                            animator.SetBool("isLooking", false);
+                            movementFlag = 1;
+                            StartCoroutine(PauseBeforeChase(new Vector3(1, 1, 1) * 0.5f));
+
+                        }
 
                     }
-                    else if (playerPos.x < transform.position.x)
-                    {
-                        StopCoroutine("ChangeMovement");
-                        animator.SetBool("isLooking", false);
-
-                        StartCoroutine(PauseBeforeChase(new Vector3(1, 1, 1) * 0.5f));
-
-                    }
-
                 }
             }
         }
+
     }
     IEnumerator PauseBeforeChase(Vector3 newScale)
     {
@@ -162,10 +185,10 @@ public class Monster : MonoBehaviour
 
             yield return new WaitForSeconds(2.0f);
 
+            back = false;
             stopmove = false;
             animator.SetBool("isLooking", true);
         }
-
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -200,10 +223,11 @@ public class Monster : MonoBehaviour
     {
         movePower = 0f;
         animator.SetTrigger("Discover");
+        isTracing = true;
 
         yield return new WaitForSeconds(3.0f);
 
-        isTracing = true;
+        tmp = true;
         movePower = 30f;
         animator.SetBool("isDiscover", true);
 
