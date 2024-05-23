@@ -948,7 +948,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 1400466525}
   center: {x: 35, y: 6}
-  mapSize: {x: 50, y: 10}
+  mapSize: {x: 48, y: 12}
   height: 0
   cameraSpeed: 5
   player: {fileID: 1400466524}

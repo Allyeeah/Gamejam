@@ -33,6 +33,7 @@ public class StartView : MonoBehaviour
         //새로운 패널 활성화
         if(KeyGuideView != null)
         {
+            
             KeyGuideView.SetActive(true);
             Debug.Log("Key Guide Panel activated.");
 

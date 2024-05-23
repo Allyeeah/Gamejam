@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Outside.unity
     guid: 88b7e3d9ccb66844c930c049405e886b
+  - enabled: 1
+    path: Assets/Scenes/ClassRoom.unity
+    guid: 911c5d20f7433f0498798ed7674cd0b8
   m_configObjects: {}
