@@ -6,12 +6,11 @@ public class DoorChanger : MonoBehaviour
 {
     public SpriteRenderer targetSpriteRenderer; // 변경할 스프라이트 렌더러를 참조합니다.
     public Sprite newSprite; // 새로운 스프라이트를 참조합니다.
-
     public Sprite originalSprite; // 원래의 스프라이트를 저장합니다.
 
-    public GameObject panel; // Q키를 눌렀을 때 표시할 패널
+    public GameObject panel; // E키를 두 번째 눌렀을 때 표시할 패널
     private bool isSpriteChanged = false; // 스프라이트 변경 여부
-
+    private bool isPanelShown = false; // 패널이 표시되었는지 여부
 
     void Start()
     {
@@ -24,31 +23,35 @@ public class DoorChanger : MonoBehaviour
 
     void Update()
     {
-        // Q키를 눌렀을 때 패널을 활성화합니다.
-        if (Input.GetKeyDown(KeyCode.Q) && isSpriteChanged)
+        // E키를 눌렀을 때 상호작용을 처리
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            if (panel != null)
+            if (!isSpriteChanged)
             {
-                panel.SetActive(true);
+                ChangeSprite();
+            }
+            else if (!isPanelShown)
+            {
+                ShowPanel();
             }
         }
     }
 
-    void OnMouseDown()
+    void ChangeSprite()
     {
-        // 스프라이트를 변경합니다.
         if (targetSpriteRenderer != null && newSprite != null)
         {
-            if (targetSpriteRenderer.sprite == originalSprite)
-            {
-                targetSpriteRenderer.sprite = newSprite;
-                isSpriteChanged = true;
-            }
-            else
-            {
-                targetSpriteRenderer.sprite = originalSprite;
-                isSpriteChanged = false;
-            }
+            targetSpriteRenderer.sprite = newSprite;
+            isSpriteChanged = true;
+        }
+    }
+
+    void ShowPanel()
+    {
+        if (panel != null)
+        {
+            panel.SetActive(true);
+            isPanelShown = true;
         }
     }
 }
