@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject ClearPanel;
+    public GameObject StartPanel;
    // public GameObject keybutton;
    // public bool gotkey = false;
 
@@ -18,41 +19,43 @@ public class GameManager : MonoBehaviour
         //{
         //    getkey();
         //}
-        print("check");
+        
         if (Input.GetKeyDown(KeyCode.Q))
         {
             print("check");
             ClearPanel.SetActive(true);
         }
+
     }
 
-    //public void opendoor()
-    //{
-    //    if (gotkey == true)
-    //    {
-    //        ClearPanel.setactive(true);
-    //    }
-    //}
+ 
+        //public void opendoor()
+        //{
+        //    if (gotkey == true)
+        //    {
+        //        ClearPanel.setactive(true);
+        //    }
+        //}
 
-    //public void getkey()
-    //{
-    //    gotkey = true;
-    //    destroy(keybutton);
-    //}
+        //public void getkey()
+        //{
+        //    gotkey = true;
+        //    destroy(keybutton);
+        //}
 
-    //private void OnTriggerEnter2D(Collider2D other)
-    //{
-    //    if (other.gameobject == keybutton)
-    //    {
-    //        isnearkeybutton = true;
-    //    }
-    //}
+        //private void OnTriggerEnter2D(Collider2D other)
+        //{
+        //    if (other.gameobject == keybutton)
+        //    {
+        //        isnearkeybutton = true;
+        //    }
+        //}
 
-    //private void OnTriggerExit2D(Collider2D other)
-    //{
-    //    if (other.gameobject == keybutton)
-    //    {
-    //        isnearkeybutton = false;
-    //    }
-    //}
-}
+        //private void OnTriggerExit2D(Collider2D other)
+        //{
+        //    if (other.gameobject == keybutton)
+        //    {
+        //        isnearkeybutton = false;
+        //    }
+        //}
+    }
