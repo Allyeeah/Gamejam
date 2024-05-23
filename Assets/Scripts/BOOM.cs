@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BOOM : MonoBehaviour
+<<<<<<< Updated upstream
 {
     public Transform startLocation; // 카메라가 잠깐 위치할 시작 위치
+=======
+{// 카메라가 잠깐 위치할 시작 위치
+>>>>>>> Stashed changes
     public float waitTime = 8f; // 카메라가 시작 위치에 머무는 시간
     public MonoBehaviour scriptToPause1; // 일시 중지할 스크립트
     public MonoBehaviour scriptToPause2;
@@ -20,6 +24,7 @@ public class BOOM : MonoBehaviour
         originalRotation = transform.rotation;
 
         // 코루틴을 시작합니다.
+<<<<<<< Updated upstream
         StartCoroutine(MoveCamera());
     }
 
@@ -64,4 +69,9 @@ public class BOOM : MonoBehaviour
             scriptToPause3.enabled = true;
         }
     }
+=======
+    }
+
+   
+>>>>>>> Stashed changes
 }
