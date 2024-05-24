@@ -32,9 +32,10 @@ public class Monster : MonoBehaviour
     public AudioClip normalMusic; // 일반 배경음악
     public AudioClip monsterMusic; // 몬스터와 충돌 시 재생할 음악
     private AudioSource audioSource;
-
+    public GameObject imageRestart;
     private void Start()
     {
+        imageRestart.SetActive(false);
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = normalMusic;
         audioSource.Play();
@@ -99,7 +100,6 @@ public class Monster : MonoBehaviour
                     
                 if (playerPos.x - transform.position.x < 15 && playerPos.x - transform.position.x > -15 && !done && tmp)
                 {
-                    ChangeMusic(monsterMusic);
                     done = true;
                     StartCoroutine(MoveCamera());
 
@@ -227,6 +227,7 @@ public class Monster : MonoBehaviour
 
         yield return new WaitForSeconds(3.0f);
 
+        ChangeMusic(monsterMusic);
         tmp = true;
         movePower = 30f;
         animator.SetBool("isDiscover", true);
@@ -266,7 +267,7 @@ public class Monster : MonoBehaviour
         Camera.transform.rotation = lastLocation.rotation;
 
         yield return new WaitForSeconds(5f);
-
+        imageRestart.SetActive(true);
         // 일시 중지한 스크립트의 실행을 재개합니다.
         if (scriptToPause1 != null)
         {
