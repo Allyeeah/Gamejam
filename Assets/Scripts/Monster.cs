@@ -26,8 +26,22 @@ public class Monster : MonoBehaviour
     public MonoBehaviour scriptToPause1; // 일시 중지할 스크립트
     public MonoBehaviour scriptToPause2;
     public MonoBehaviour scriptToPause3;
+<<<<<<< Updated upstream
     private void Start()
     {
+=======
+
+    public AudioClip normalMusic; // 일반 배경음악
+    public AudioClip monsterMusic; // 몬스터와 충돌 시 재생할 음악
+    private AudioSource audioSource;
+    public Canvas transparentCanvas;
+    private void Start()
+    {
+        transparentCanvas.gameObject.SetActive(false);
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = normalMusic;
+        audioSource.Play();
+>>>>>>> Stashed changes
         animator = gameObject.GetComponent<Animator>();
         StartCoroutine("ChangeMovement");
         transform.position = Vector2.MoveTowards(new Vector2(144.52f, -6.95f), new Vector2(90, -6.95f), 99999f);
@@ -82,7 +96,11 @@ public class Monster : MonoBehaviour
 
                 if (playerPos.x - transform.position.x < 15 && playerPos.x - transform.position.x > -15 && !done)
                 {
+<<<<<<< Updated upstream
                     done= true;
+=======
+                    done = true;
+>>>>>>> Stashed changes
                     StartCoroutine(MoveCamera());
 
                 }
@@ -201,7 +219,9 @@ public class Monster : MonoBehaviour
         movePower = 0f;
         animator.SetTrigger("Discover");
 
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(1.5f);
+        ChangeMusic(monsterMusic);
+        yield return new WaitForSeconds(1.5f);
 
         isTracing = true;
         movePower = 30f;
@@ -256,5 +276,7 @@ public class Monster : MonoBehaviour
         {
             scriptToPause3.enabled = true;
         }
+
+        transparentCanvas.gameObject.SetActive(true);
     }
 }
