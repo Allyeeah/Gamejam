@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
-    public string ClassRoom;
+    public string Outside;
     private bool playerInRange = false;
     /*public void ChangeScene(string Outside)
     {
@@ -16,14 +16,14 @@ public class SceneChanger : MonoBehaviour
     {
         if (playerInRange && Input.GetKeyDown(KeyCode.E)) // 플레이어가 범위 내에 있고 'E' 키가 눌리면
         {
-            if (!string.IsNullOrEmpty(ClassRoom))
+            if (!string.IsNullOrEmpty(Outside))
             {
-                Debug.Log("Loading scene: " + ClassRoom);
-                SceneManager.LoadScene(ClassRoom); // 다음 씬으로 전환
+                Debug.Log("Loading scene: " + Outside);
+                SceneManager.LoadScene(Outside); // 다음 씬으로 전환
             }
             else
             {
-                Debug.LogError("Scene name 'ClassRoom' is not set!");
+                Debug.LogError("Scene name 'Outside' is not set!");
             }
         }
     }
