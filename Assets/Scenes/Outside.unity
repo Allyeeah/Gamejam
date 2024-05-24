@@ -202,6 +202,7 @@ GameObject:
   - component: {fileID: 384287038}
   - component: {fileID: 384287040}
   - component: {fileID: 384287039}
+  - component: {fileID: 384287041}
   m_Layer: 5
   m_Name: E5
   m_TagString: Untagged
@@ -266,6 +267,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 384287037}
   m_CullTransparentMesh: 1
+--- !u!114 &384287041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384287037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cdbef0370a254a42829e968629e6bee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panels:
+  - {fileID: 384287037}
+  - {fileID: 2025343498}
+  EndingCartoon: {fileID: 0}
 --- !u!1 &672453627
 GameObject:
   m_ObjectHideFlags: 0
@@ -5405,16 +5422,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1167486204}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cdbef0370a254a42829e968629e6bee, type: 3}
+  m_Script: {fileID: 11500000, guid: bcc057da57c6d7342afd49fc63a60da0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panels:
-  - {fileID: 803189910}
-  - {fileID: 2036809764}
-  - {fileID: 1413150652}
-  - {fileID: 384287037}
-  - {fileID: 2025343498}
-  EndingCartoon: {fileID: 1167486204}
+  endingCartoonPanel: {fileID: 1167486204}
+  e2Panel: {fileID: 803189910}
 --- !u!1001 &1240502427
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5834,6 +5846,7 @@ GameObject:
   - component: {fileID: 1413150653}
   - component: {fileID: 1413150655}
   - component: {fileID: 1413150654}
+  - component: {fileID: 1413150656}
   m_Layer: 5
   m_Name: E4
   m_TagString: Untagged
@@ -5898,6 +5911,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1413150652}
   m_CullTransparentMesh: 1
+--- !u!114 &1413150656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413150652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cdbef0370a254a42829e968629e6bee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panels:
+  - {fileID: 1413150652}
+  - {fileID: 384287037}
+  - {fileID: 2025343498}
+  EndingCartoon: {fileID: 0}
 --- !u!1 &1733222580 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5364489982687965707, guid: 46905e234c6d7f9428a984524b9af892, type: 3}
@@ -6114,6 +6144,7 @@ GameObject:
   - component: {fileID: 2025343499}
   - component: {fileID: 2025343501}
   - component: {fileID: 2025343500}
+  - component: {fileID: 2025343502}
   m_Layer: 5
   m_Name: E6
   m_TagString: Untagged
@@ -6178,6 +6209,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2025343498}
   m_CullTransparentMesh: 1
+--- !u!114 &2025343502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025343498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cdbef0370a254a42829e968629e6bee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panels:
+  - {fileID: 2025343498}
+  EndingCartoon: {fileID: 0}
 --- !u!1 &2036809764
 GameObject:
   m_ObjectHideFlags: 0
@@ -6189,6 +6235,7 @@ GameObject:
   - component: {fileID: 2036809765}
   - component: {fileID: 2036809767}
   - component: {fileID: 2036809766}
+  - component: {fileID: 2036809768}
   m_Layer: 5
   m_Name: E3
   m_TagString: Untagged
@@ -6253,6 +6300,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2036809764}
   m_CullTransparentMesh: 1
+--- !u!114 &2036809768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2036809764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cdbef0370a254a42829e968629e6bee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panels:
+  - {fileID: 2036809764}
+  - {fileID: 1413150652}
+  - {fileID: 384287037}
+  - {fileID: 2025343498}
+  EndingCartoon: {fileID: 0}
 --- !u!1 &2138246160
 GameObject:
   m_ObjectHideFlags: 0
