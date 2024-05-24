@@ -12,6 +12,7 @@ public class LockerController : MonoBehaviour
 
     private bool playerInRange = false;
     public GameObject cardKey;  // 카드키 오브젝트
+    public ParticleSystem particleSystem; // 파티클 시스템 오브젝트
 
     void Start()
     {
@@ -35,14 +36,35 @@ public class LockerController : MonoBehaviour
         {
             isOpen = !isOpen;
             spriteRenderer.sprite = isOpen ? openSprite : closedSprite;
+            Debug.Log(isOpen ? "Locker opened." : "Locker closed.");
 
-            if (isOpen && cardKey != null)
+            if (isOpen)
             {
-                cardKey.SetActive(true); // 사물함이 열리면 카드키 활성화
+                if (cardKey != null)
+                {
+                    cardKey.SetActive(true); // 사물함이 열리면 카드키 활성화
+                    Debug.Log("CardKey activated.");
+                }
+
+                if (particleSystem != null)
+                {
+                    particleSystem.Stop(); // 사물함이 열리면 파티클 시스템 비활성화
+                    Debug.Log("Particle system stopped.");
+                }
             }
-            else if (!isOpen)
+            else
             {
-                cardKey.SetActive(false);
+                if (cardKey != null)
+                {
+                    cardKey.SetActive(false); // 사물함이 닫히면 카드키 비활성화
+                    Debug.Log("CardKey deactivated.");
+                }
+
+                if (particleSystem != null)
+                {
+                   // particleSystem.Play(); // 사물함이 닫히면 파티클 시스템 활성화
+                    Debug.Log("Particle system started.");
+                }
             }
         }
     }
