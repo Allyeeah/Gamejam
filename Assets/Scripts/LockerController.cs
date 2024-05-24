@@ -40,6 +40,10 @@ public class LockerController : MonoBehaviour
             {
                 cardKey.SetActive(true); // 사물함이 열리면 카드키 활성화
             }
+            else if (!isOpen)
+            {
+                cardKey.SetActive(false);
+            }
         }
     }
     void OnTriggerEnter2D(Collider2D other)
@@ -67,7 +71,8 @@ public class LockerController : MonoBehaviour
         if (cardKey != null && cardKey.activeSelf)
         {
             Debug.Log("CollectCardKey called."); // 디버그 로그 추가
-            cardKey.SetActive(false); // 카드키를 획득하면 비활성화
+            Destroy(cardKey.gameObject);
+            //cardKey.SetActive(false); // 카드키를 획득하면 비활성화
             // 여기에 카드키를 인벤토리에 추가하는 로직을 추가할 수 있습니다.
             Debug.Log("CardKey collected!");
         }

@@ -85,13 +85,13 @@ public class Monster : MonoBehaviour
             {
                 Vector3 playerPos = traceTarget.transform.position;
 
-                if (playerPos.x > transform.position.x && traceTarget.transform.localScale == new Vector3(-1,1,1) * 0.245f)
+                if (playerPos.x > transform.position.x)
                 {
                     moveVelocity = Vector3.right;
                     transform.localScale = new Vector3(-1, 1, 1) * 0.5f;
 
                 }
-                else if (playerPos.x < transform.position.x && traceTarget.transform.localScale == new Vector3(1, 1, 1) * 0.245f)
+                else if (playerPos.x < transform.position.x)
                 {
                     moveVelocity = Vector3.left;
                     transform.localScale = new Vector3(1, 1, 1) * 0.5f;
