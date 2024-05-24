@@ -17,6 +17,7 @@ public class PanelImageChanger : MonoBehaviour
         // 모든 패널을 비활성화 상태로 시작
         foreach (GameObject panel in panels)
         {
+
             panel.SetActive(false);
         }
 
@@ -25,6 +26,8 @@ public class PanelImageChanger : MonoBehaviour
         {
             panels[0].SetActive(true);
         }
+
+
     }
 
     void Update()
@@ -32,6 +35,7 @@ public class PanelImageChanger : MonoBehaviour
         // "E" 키 입력 감지
         if (Input.GetKeyDown(KeyCode.E))
         {
+
             ShowNextPanel();
         }
     }
@@ -61,30 +65,31 @@ public class PanelImageChanger : MonoBehaviour
         // 다음 패널 인덱스 계산
         currentPanelIndex++;
 
-        /*//모든 패널 비활성화
-        if (currentPanelIndex >= panels.Length)
+        /* //모든 패널 비활성화
+         if (currentPanelIndex >= panels.Length)
+         {
+             Debug.Log("All panels are now hidden.");
+             if (EndingCartoon != null)
+             {
+                 EndingCartoon.SetActive(false);
+             }
+
+             currentPanelIndex = -1; // 모든 패널이 비활성화되었음을 표시
+             return;*/
+
+
+        // 다음 패널 활성화
+        if (currentPanelIndex >= 0 && currentPanelIndex < panels.Length)
         {
-            Debug.Log("All panels are now hidden.");
-            if (EndingCartoon != null)
-            {
-                EndingCartoon.SetActive(false);
-            }
-
-            currentPanelIndex = -1; // 모든 패널이 비활성화되었음을 표시
-            return;
-*/
-
-            // 다음 패널 활성화
-            if (currentPanelIndex >= 0 && currentPanelIndex < panels.Length)
-            {
-                panels[currentPanelIndex].SetActive(true);
-            }
-            else
-            {
-                Debug.LogError($"Next panel index {currentPanelIndex} is out of bounds.");
-            }
+            panels[currentPanelIndex].SetActive(true);
+        }
+        else
+        {
+            Debug.LogError($"Next panel index {currentPanelIndex} is out of bounds.");
         }
     }
+}
+
 
 
 

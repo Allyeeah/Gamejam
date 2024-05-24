@@ -14,7 +14,7 @@ public class LockerPopupView : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))  // 플레이어 태그 확인
         {
@@ -25,7 +25,7 @@ public class LockerPopupView : MonoBehaviour
         }
     }
 
-    void OnTriggerExit2D(Collider other)
+    void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))  // 플레이어 태그 확인
         {

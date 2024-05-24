@@ -11,6 +11,7 @@ public class DoorChanger : MonoBehaviour
     public GameObject panel; // E키를 두 번째 눌렀을 때 표시할 패널
     private bool isSpriteChanged = false; // 스프라이트 변경 여부
     private bool isPanelShown = false; // 패널이 표시되었는지 여부
+    public ParticleSystem particleSystem; // 파티클 시스템 오브젝트
 
     void Start()
     {
@@ -29,6 +30,7 @@ public class DoorChanger : MonoBehaviour
             if (!isSpriteChanged)
             {
                 ChangeSprite();
+                particleSystem.Stop();
             }
             else if (!isPanelShown)
             {

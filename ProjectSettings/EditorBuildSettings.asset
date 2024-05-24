@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ClassRoom.unity
     guid: 911c5d20f7433f0498798ed7674cd0b8
+  - enabled: 1
+    path: Assets/Scenes/Floor31.unity
+    guid: 79bd23a43a5973a43a9a23e101e6d24f
   m_configObjects: {}
