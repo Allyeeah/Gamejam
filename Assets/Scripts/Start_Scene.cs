@@ -35,7 +35,7 @@ public class Start_Scene: MonoBehaviour
             animator.SetBool("isWalking", true);
 
             if (distance==0)
-            {
+            {       
                 if (!reachedFirstTarget)
                 {
                     reachedFirstTarget = true;

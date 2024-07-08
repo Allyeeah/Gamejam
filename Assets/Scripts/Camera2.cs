@@ -23,7 +23,7 @@ public class Camera2 : MonoBehaviour
 
     private void Start()
     {
-        playerTransform = GameObject.Find("Player").GetComponent<Transform>();
+        playerTransform = GameObject.Find("Player (1)").GetComponent<Transform>();
     }
 
     private void Update()

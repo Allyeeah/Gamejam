@@ -6398,13 +6398,38 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1067770066587961638, guid: 03e35e28592aec649a3dd3d5d28d32ed, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1888987291}
   m_SourcePrefab: {fileID: 100100000, guid: 03e35e28592aec649a3dd3d5d28d32ed, type: 3}
 --- !u!1 &1888987290 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1067770066587961638, guid: 03e35e28592aec649a3dd3d5d28d32ed, type: 3}
   m_PrefabInstance: {fileID: 1888987289}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1888987291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1888987290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 728ea53351d03f847b1821a20daf10ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstLocation: {fileID: 2049221367}
+  secondLocation: {fileID: 1121091585}
+  lastLocation: {fileID: 1297928546}
+  waitTime: 0.2
+  Camera: {fileID: 1994545952}
+  traceTarget: {fileID: 1733222580}
+  monsterSprite: {fileID: 1888987290}
+  player: {fileID: 1733222585}
+  speed: 30
+  imageRestart: {fileID: 1092918841}
 --- !u!1001 &1932446564
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7095,9 +7120,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5282e64507690c84eba68f9ed47f3e07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   targetSpriteRenderer: {fileID: 2138246164}
   newSprite: {fileID: 2043438951, guid: eb88c2ab9ccb7e44cb39e99265707354, type: 3}
   originalSprite: {fileID: -1373862726, guid: f6eee101e0a6ad6419f27afa00b5a5f4, type: 3}
+  firstTargetPosition: {fileID: 0}
   panel: {fileID: 1167486204}
   particleSystem: {fileID: 672453630}
   monsterSprite: {fileID: 1888987290}

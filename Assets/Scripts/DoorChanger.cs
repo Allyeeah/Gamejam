@@ -6,9 +6,13 @@ using UnityEngine.XR;
 
 public class DoorChanger : MonoBehaviour
 {
+
+    public Animator animator;
     public SpriteRenderer targetSpriteRenderer; // 변경할 스프라이트 렌더러를 참조합니다.
     public Sprite newSprite; // 새로운 스프라이트를 참조합니다.
     public Sprite originalSprite; // 원래의 스프라이트를 저장합니다.
+
+    public Transform firstTargetPosition; // 첫 번째 이동할 목표 위치
 
     public GameObject panel; // E키를 두 번째 눌렀을 때 표시할 패널
     private bool isSpriteChanged = false; // 스프라이트 변경 여부
@@ -32,8 +36,13 @@ public class DoorChanger : MonoBehaviour
     public MonoBehaviour scriptToPause3;
     public float movePower = 30f;
 
+    private Transform currentTargetPosition;
+
     void Start()
     {
+        animator = GetComponent<Animator>();
+
+        currentTargetPosition = firstTargetPosition;
         monsterSprite.SetActive(false);
         // 원래 스프라이트를 저장합니다.
         if (targetSpriteRenderer != null)
@@ -48,30 +57,7 @@ public class DoorChanger : MonoBehaviour
         // E키를 눌렀을 때 상호작용을 처리
         if (Input.GetKeyDown(KeyCode.E))
         {
-            /*if (!ClassRoomCardKey.Instance.hasCardKey)
-            {
-                ActivateMonsterSprite();
-                Vector3 playerPos = traceTarget.transform.position;
-
-                if (playerPos.x > Monster.transform.position.x)
-                {
-                    moveVelocity = Vector3.right;
-                    Monster.transform.localScale = new Vector3(-1, 1, 1) * 0.5f;
-
-                }
-                else if (playerPos.x < Monster.transform.position.x)
-                {
-                    moveVelocity = Vector3.left;
-                    Monster.transform.localScale = new Vector3(1, 1, 1) * 0.5f;
-                }
-
-                if (playerPos.x - Monster.transform.position.x < 15 && playerPos.x - Monster.transform.position.x > -15)
-                {
-                    StartCoroutine(MoveCamera());
-                }
-            }*/
-
-
+            
             if (!isSpriteChanged)
             {
                 ChangeSprite();
@@ -85,63 +71,7 @@ public class DoorChanger : MonoBehaviour
             transform.position += moveVelocity * movePower * Time.deltaTime;
         }
     }
-    private IEnumerator MoveCamera()
-    {
-        // 일시 중지할 스크립트의 실행을 중단합니다.
-        if (scriptToPause1 != null)
-        {
-            scriptToPause1.enabled = false;
-        }
-        if (scriptToPause2 != null)
-        {
-            scriptToPause2.enabled = false;
-        }
-        if (scriptToPause3 != null)
-        {
-            scriptToPause3.enabled = false;
-        }
-
-        // 카메라를 시작 위치로 이동시킵니다.
-        Camera.transform.position = firstLocation.position;
-        Camera.transform.rotation = firstLocation.rotation;
-
-        // waitTime 동안 대기합니다.
-        yield return new WaitForSeconds(waitTime);
-
-        // 카메라를 원래 위치로 되돌립니다.
-        Camera.transform.position = secondLocation.position;
-        Camera.transform.rotation = secondLocation.rotation;
-
-        yield return new WaitForSeconds(waitTime);
-
-        // 카메라를 원래 위치로 되돌립니다.
-        Camera.transform.position = lastLocation.position;
-        Camera.transform.rotation = lastLocation.rotation;
-
-        yield return new WaitForSeconds(5f);
-        imageRestart.SetActive(true);
-        // 일시 중지한 스크립트의 실행을 재개합니다.
-        if (scriptToPause1 != null)
-        {
-            scriptToPause1.enabled = true;
-        }
-        if (scriptToPause2 != null)
-        {
-            scriptToPause2.enabled = true;
-        }
-        if (scriptToPause3 != null)
-        {
-            scriptToPause3.enabled = true;
-        }
-    }
-    void ActivateMonsterSprite()
-    {
-        if (monsterSprite != null && !monsterSprite.activeInHierarchy)
-        {
-            monsterSprite.SetActive(true);
-        }
-    }
-
+    
     void ChangeSprite()
     {
         if (targetSpriteRenderer != null && newSprite != null)
